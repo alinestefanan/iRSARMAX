@@ -479,7 +479,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
       {
         for(a in 1:p1)
         {
-          aAs[a,b,i] <- -(ynew[i+m-(S*AR[b]+ar[a])]-X[i+m-(S*AR[b]+ar[a]),2:ncol(X)]%*%as.matrix(beta))
+          aAs[a,b,i] <- -(ynew[i-(S*AR[b]+ar[a])]-X[i-(S*AR[b]+ar[a]),2:ncol(X)]%*%as.matrix(beta))
         }
       }
     }
