@@ -387,15 +387,15 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   
   reg <- c(0,rep(0,p1+q1+P1+Q1+k), length(y1[which(y1==0)])/length(y1),0) 
   z=c()
-  # opt.error<- tryCatch(optim(reg, loglik, score, method = "BFGS", control =
-  #                              list(fnscale = -1)), error = function(e) return("error")) 
-  # if(opt.error[1] ==
-  #    "error")
-  # {z$RMC=1
-  # #stop("optim error")
-  # warning("optim error")
-  # return(z)
-  # }
+  opt.error<- tryCatch(optim(reg, loglik, score, method = "BFGS", control =
+                               list(fnscale = -1)), error = function(e) return("error"))
+  if(opt.error[1] ==
+     "error")
+  {z$RMC=1
+  #stop("optim error")
+  warning("optim error")
+  return(z)
+  }
   
   opt <- optim(reg, loglik, score,method = "BFGS",hessian=T,control = list(fnscale = -1))#, maxit = maxit1, reltol = 1e-12))
   
@@ -1040,8 +1040,9 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
       return(z)#if Analytic Fisher Information Matrix is not positive semi-definite, do not calculate
     }
   }
-  
+ # print("z$coeff");print(z$coeff);print("sqrt(v)");print(sqrt(v))
   z$zstat<-z$coeff/sqrt(v)
+  #print("z$zstat");print(z$zstat)
   #print("Estatísticas Z do Teste de Wald")
   #print(z$zstat)
   #print("Resultado a nível 5%")
@@ -1219,9 +1220,15 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     #null hypothesis: non-heteroscedasticity (constant variance)
     
     library(FinTS)
-    arch<-ArchTest(residual, lags=10) 
-    ams$arch<-arch$statistic
-    ams$p_arch<-arch$p.value
+    arch.error<- tryCatch(ArchTest(residual, lags=10), error = function(e) return("error")) 
+    if(arch.error[1] !=
+       "error")
+    {
+      arch<-ArchTest(residual, lags=10) 
+      ams$arch<-arch$statistic
+      ams$p_arch<-arch$p.value
+    }else{ams$arch<-NA;ams$p_arch<-NA}
+    
     
     #null hypothesis: normality
     library(tseries)
@@ -1258,7 +1265,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   z$accuracyfitted= measures.fitted(z$fitted,residual)$accuracy
   z$residualfitted=measures.fitted(z$fitted,residual)$residual
   z$diagnosticfitted=measures.fitted(z$fitted,residual)$diagnostic
-  
+  if(is.na(z$diagnosticfitted[2,ncol(z$diagnosticfitted)])){z$RMC=1}
   mresult<-matrix(round(c(z$loglik,z$maic,z$mbic),4),nrow=3,ncol=1)
   rownames(mresult)<-c("Log-likelihood","AIC","BIC")
   colnames(mresult)<-c("")

@@ -345,6 +345,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   
   z$conv <- opt$conv
   coef <- (opt$par)[1:(k+q1+2)]
+ # print(opt$par)
   z$coeff <- coef
   
   beta0 <-coef[1] #intercept
@@ -613,7 +614,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   }
   
   z$zstat<-z$coeff/sqrt(v)
-  #print("Estatísticas Z do Teste de Wald")
+ # print("z$zstat");print(z$zstat)  #print("Estatísticas Z do Teste de Wald")
   #print(z$zstat)
   #print("Resultado a nível 5%")
   resp<-rep(0,length(z$zstat))
@@ -792,9 +793,14 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     #null hypothesis: non-heteroscedasticity (constant variance)
     
     library(FinTS)
-    arch<-ArchTest(residual, lags=10) 
-    ams$arch<-arch$statistic
-    ams$p_arch<-arch$p.value
+    arch.error<- tryCatch(ArchTest(residual, lags=10), error = function(e) return("error")) 
+    if(arch.error[1] !=
+       "error")
+    {
+      arch<-ArchTest(residual, lags=10) 
+      ams$arch<-arch$statistic
+      ams$p_arch<-arch$p.value
+    }else{ams$arch<-NA;ams$p_arch<-NA}
     
     #null hypothesis: normality
     library(tseries)
@@ -831,7 +837,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   z$accuracyfitted= measures.fitted(z$fitted,residual)$accuracy
   z$residualfitted=measures.fitted(z$fitted,residual)$residual
   z$diagnosticfitted=measures.fitted(z$fitted,residual)$diagnostic
-  
+  if(is.na(z$diagnosticfitted[2,ncol(z$diagnosticfitted)])){z$RMC=1}
   mresult<-matrix(round(c(z$loglik,z$maic,z$mbic),4),nrow=3,ncol=1)
   rownames(mresult)<-c("Log-likelihood","AIC","BIC")
   colnames(mresult)<-c("")

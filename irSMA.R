@@ -348,8 +348,9 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   z$AR=AR
   z$MA=MA
   z$delta=m
-  z$roots=c(abs(polyroot(vector.root(z$MA,z$Theta))))
   z$RMC=0
+  z$roots=c(abs(polyroot(vector.root(z$MA,z$Theta))))
+  
   if(any(z$roots<1)){warning("root(s) within the unity circle");z$RMC=1}
   
   errorhat <- rep(0,n) # E(error)=0
@@ -708,9 +709,14 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     #null hypothesis: non-heteroscedasticity (constant variance)
     
     library(FinTS)
-    arch<-ArchTest(residual, lags=10) 
-    ams$arch<-arch$statistic
-    ams$p_arch<-arch$p.value
+    arch.error<- tryCatch(ArchTest(residual, lags=10), error = function(e) return("error")) 
+    if(arch.error[1] !=
+       "error")
+    {
+      arch<-ArchTest(residual, lags=10) 
+      ams$arch<-arch$statistic
+      ams$p_arch<-arch$p.value
+    }else{ams$arch<-NA;ams$p_arch<-NA}
     
     #null hypothesis: normality
     library(tseries)
@@ -748,7 +754,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   z$accuracyfitted= measures.fitted(z$fitted,residual)$accuracy
   z$residualfitted=measures.fitted(z$fitted,residual)$residual
   z$diagnosticfitted=measures.fitted(z$fitted,residual)$diagnostic
-  
+  if(is.na(z$diagnosticfitted[2,ncol(z$diagnosticfitted)])){z$RMC=1}
   mresult<-matrix(round(c(z$loglik,z$maic,z$mbic),4),nrow=3,ncol=1)
   rownames(mresult)<-c("Log-likelihood","AIC","BIC")
   colnames(mresult)<-c("")

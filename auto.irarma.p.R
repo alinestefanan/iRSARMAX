@@ -54,7 +54,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (MA==2){MA=c(1,2)}else if(MA==3){MA=c(1,2,3)}else if(MA==4){MA=c(1,2,3,4)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth
               ninth=eighth
@@ -217,7 +217,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (MA==2){MA=c(1,2)}else if (MA==3){MA=c(1,2,3)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth
               ninth=eighth
@@ -381,7 +381,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (MA==2){MA=c(1,2)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth
               ninth=eighth
@@ -539,7 +539,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           MA=unlist(order[4])
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth
               ninth=eighth
@@ -703,7 +703,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==2){ma=c(1,2)}else if (ma==3){ma=c(1,2,3)}else if (ma==4){ma=c(1,2,3,4)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth
               ninth=eighth
@@ -842,7 +842,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==2){ma=c(1,2)}else if (ma==3){ma=c(1,2,3)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth
               ninth=eighth
@@ -981,7 +981,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==2){ma=c(1,2)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth
               ninth=eighth
@@ -1126,7 +1126,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           ma=unlist(order[2])
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth
               ninth=eighth
@@ -1281,7 +1281,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           MA=unlist(order[4])
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth
               ninth=eighth
@@ -1381,7 +1381,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
           
           
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -1481,7 +1481,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
           
           
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -1576,7 +1576,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
           
           
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -1670,7 +1670,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
           
           
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -1768,7 +1768,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -1863,7 +1863,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -1957,7 +1957,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             #print(mod$RMC)
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -2057,7 +2057,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
           
           
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -2152,7 +2152,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
           
           
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -2247,7 +2247,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
           
           
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -2342,7 +2342,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
           
           
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -2437,7 +2437,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
           
           
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -2532,7 +2532,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
           
           
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -2627,7 +2627,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
           
           
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -2727,7 +2727,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -2822,7 +2822,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -2917,7 +2917,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -3012,7 +3012,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -3107,7 +3107,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -3202,7 +3202,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -3297,7 +3297,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -3397,7 +3397,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -3492,7 +3492,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -3587,7 +3587,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -3682,7 +3682,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -3777,7 +3777,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -3872,7 +3872,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -3967,7 +3967,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -4063,7 +4063,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -4158,7 +4158,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -4253,7 +4253,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -4348,7 +4348,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -4443,7 +4443,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -4538,7 +4538,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -4633,7 +4633,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -4728,7 +4728,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -4823,7 +4823,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -4918,7 +4918,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -5013,7 +5013,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -5108,7 +5108,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -5203,7 +5203,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -5298,7 +5298,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
             
             
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -5398,7 +5398,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -5493,7 +5493,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -5588,7 +5588,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -5683,7 +5683,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -5778,7 +5778,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -5873,7 +5873,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -5968,7 +5968,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -6063,7 +6063,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -6158,7 +6158,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -6253,7 +6253,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -6348,7 +6348,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -6443,7 +6443,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -6538,7 +6538,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -6633,7 +6633,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -6728,7 +6728,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -6823,7 +6823,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -6918,7 +6918,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -7013,7 +7013,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -7108,7 +7108,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -7203,7 +7203,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -7298,7 +7298,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               
               
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   tenth=ninth;
                   ninth=eighth;
@@ -7456,7 +7456,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           MA=unlist(order[4])
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -7554,7 +7554,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (MA==2){MA=c(1,2)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -7652,7 +7652,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (MA==2){MA=c(1,2)}else if (MA==3){MA=c(1,2,3)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -7745,7 +7745,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (MA==2){MA=c(1,2)}else if (MA==3){MA=c(1,3)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -7837,7 +7837,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (MA==2){MA=c(1,2)}else if (MA==3){MA=c(2,3)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -7933,7 +7933,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (MA==3){MA=c(1,3)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -8025,7 +8025,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (MA==3){MA=c(1,2,3)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -8117,7 +8117,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (MA==3){MA=c(2,3)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -8274,7 +8274,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           MA=unlist(order[4])
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -8372,7 +8372,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (AR==2){AR=c(1,2)}
           if (MA==2){MA=c(1,2)}
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -8528,7 +8528,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           MA=unlist(order[4])
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -8690,7 +8690,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           MA=c(0)
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -8786,7 +8786,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==2){ma=c(1,2)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -8882,7 +8882,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==2){ma=c(1,2)}else if (ma==3){ma=c(1,2,3)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -8973,7 +8973,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==2){ma=c(1,2)}else if (ma==3){ma=c(1,3)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -9063,7 +9063,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==2){ma=c(1,2)}else if (ma==3){ma=c(2,3)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -9157,7 +9157,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,3)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -9247,7 +9247,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,2,3)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -9337,7 +9337,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(2,3)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -9435,7 +9435,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==4){ma=c(1,4)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -9526,7 +9526,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==4){ma=c(2,4)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -9617,7 +9617,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==4){ma=c(3,4)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -9708,7 +9708,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==4){ma=c(1,2,4)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -9798,7 +9798,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==4){ma=c(1,3,4)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -9889,7 +9889,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==4){ma=c(1,2,3,4)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -9980,7 +9980,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==4){ma=c(2,3,4)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -10076,7 +10076,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==2){ma=c(1,2)} else if (ma==4){ma=c(1,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -10167,7 +10167,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==2){ma=c(1,2)} else if (ma==4){ma=c(2,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -10258,7 +10258,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==2){ma=c(1,2)} else if (ma==4){ma=c(3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -10349,7 +10349,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==2){ma=c(1,2)} else if (ma==4){ma=c(1,2,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -10440,7 +10440,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==2){ma=c(1,2)} else if (ma==4){ma=c(1,3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -10531,7 +10531,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==2){ma=c(1,2)} else if (ma==4){ma=c(1,2,3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -10622,7 +10622,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==2){ma=c(1,2)} else if (ma==4){ma=c(2,3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -10718,7 +10718,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,2,3)} else if (ma==4){ma=c(1,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -10809,7 +10809,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,2,3)} else if (ma==4){ma=c(2,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -10900,7 +10900,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,2,3)} else if (ma==4){ma=c(3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -10991,7 +10991,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,2,3)} else if (ma==4){ma=c(1,2,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -11082,7 +11082,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,2,3)} else if (ma==4){ma=c(1,3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -11173,7 +11173,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,2,3)} else if (ma==4){ma=c(1,2,3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -11264,7 +11264,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,2,3)} else if (ma==4){ma=c(2,3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -11355,7 +11355,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,3)} else if (ma==4){ma=c(1,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -11446,7 +11446,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,3)} else if (ma==4){ma=c(2,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -11537,7 +11537,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,3)} else if (ma==4){ma=c(3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -11628,7 +11628,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,3)} else if (ma==4){ma=c(1,2,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -11719,7 +11719,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,3)} else if (ma==4){ma=c(1,3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -11810,7 +11810,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,3)} else if (ma==4){ma=c(1,2,3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -11901,7 +11901,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,3)} else if (ma==4){ma=c(2,3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -11992,7 +11992,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(2,3)} else if (ma==4){ma=c(1,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -12083,7 +12083,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(2,3)} else if (ma==4){ma=c(2,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -12174,7 +12174,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(2,3)} else if (ma==4){ma=c(3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -12265,7 +12265,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(2,3)} else if (ma==4){ma=c(1,2,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -12356,7 +12356,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(2,3)} else if (ma==4){ma=c(1,3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -12447,7 +12447,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(2,3)} else if (ma==4){ma=c(1,2,3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -12538,7 +12538,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(2,3)} else if (ma==4){ma=c(2,3,4)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -12634,7 +12634,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -12659,7 +12659,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -12684,7 +12684,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -12709,7 +12709,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -12734,7 +12734,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -12759,7 +12759,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -12784,7 +12784,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -12809,7 +12809,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -12834,7 +12834,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -12859,7 +12859,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -12884,7 +12884,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -12909,7 +12909,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -12934,7 +12934,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -12959,7 +12959,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -12984,7 +12984,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -13009,7 +13009,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -13034,7 +13034,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -13059,7 +13059,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -13084,7 +13084,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -13109,7 +13109,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -13135,7 +13135,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
               
               mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
               #print(mod$RMC)
-              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+              if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
                 if (mod$mbic<first$mbic){
                   third=second
                   second=first
@@ -13206,7 +13206,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           MA=c(0)
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -13303,7 +13303,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==2){ma=c(1,2)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -13399,7 +13399,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==2){ma=c(1,2)}else if (ma==3){ma=c(1,2,3)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -13488,7 +13488,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==2){ma=c(1,2)}else if (ma==3){ma=c(1,3)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -13579,7 +13579,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           if (ma==2){ma=c(1,2)}else if (ma==3){ma=c(2,3)}
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -13675,7 +13675,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,3)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -13766,7 +13766,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(1,2,3)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -13859,7 +13859,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
             if (ma==3){ma=c(2,3)}
             
             mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+            if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
               if (mod$mbic<first$mbic){
                 tenth=ninth;
                 ninth=eighth;
@@ -13996,7 +13996,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
           
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -14092,7 +14092,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
           
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
@@ -14228,7 +14228,7 @@ auto.irarma<-function(y,steps=10,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),max.o
           MA=c(0)
           
           mod<-try( irarma(y=y,ar=ar,ma=ma,AR=AR,MA=MA,exvar=exvar,steps=steps,S=S,graph=graph))
-          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,6]>=0.05 ){
+          if (mod$RMC==0 ){if(all(mod$pvalues<=0.05)& mod$diagnosticfitted[2,2]>=0.05 & mod$diagnosticfitted[2,4]>=0.05 & mod$diagnosticfitted[2,ncol(mod$diagnosticfitted)]>=0.05 ){
             if (mod$mbic<first$mbic){
               tenth=ninth;
               ninth=eighth;
