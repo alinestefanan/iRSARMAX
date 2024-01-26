@@ -343,6 +343,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   }
   
   z$conv <- opt$conv
+ # print(opt$par)
   coef <- (opt$par)[1:(k+P1+2#3
                        )]
   z$coeff <- coef
@@ -364,7 +365,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   z$AR=AR
   z$MA=MA
   z$delta=m
-  z$roots=c(abs(polyroot(vector.root(z$ma,z$theta))),abs(polyroot(vector.root(z$AR,z$Phi))),abs(polyroot(vector.root(z$MA,z$Theta))))
+  z$roots=c(abs(polyroot(vector.root(z$AR,z$Phi))))
   z$RMC=0
   if(any(z$roots<1)){warning("root(s) within the unity circle");z$RMC=1}
   
@@ -620,8 +621,9 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
       return(z)#if Analytic Fisher Information Matrix is not positive semi-definite, do not calculate
     }
   }
-  
+  #print("z$coeff");print(z$coeff);print("sqrt(v)");print(sqrt(v))
   z$zstat<-z$coeff/sqrt(v)
+ # print("z$zstat");print(z$zstat)
   #print("Estatísticas Z do Teste de Wald")
   #print(z$zstat)
   #print("Resultado a nível 5%")
