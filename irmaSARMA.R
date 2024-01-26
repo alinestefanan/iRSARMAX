@@ -398,7 +398,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   z$AR=AR
   z$MA=MA
   z$delta=m
-  z$roots=c(abs(polyroot(vector.root(z$ar,z$phi))),abs(polyroot(vector.root(z$ma,z$theta))),abs(polyroot(vector.root(z$AR,z$Phi))),abs(polyroot(vector.root(z$MA,z$Theta))))
+  z$roots=c(abs(polyroot(vector.root(z$ma,z$theta))),abs(polyroot(vector.root(z$AR,z$Phi))),abs(polyroot(vector.root(z$MA,z$Theta))))
   z$RMC=0
   if(any(z$roots<1)){warning("root(s) within the unity circle");z$RMC=1}
   
