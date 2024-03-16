@@ -2,10 +2,9 @@
 # S: seasonal periodicity
 # exvar: covariate column matrix
 # resid: 0 = real-observed; 1 = Standardized residuals; 2 = Deviance residuals; 3 = Quantile residuals; 4 = Randomized quantile residuals with uniform distribution
-# link: "logit", "probit" or "cloglog"
 # steps: how many steps to forecast
 
-EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),resid=4,aclag=10,steps=12,validation=T,graph=T,print=T,check=F,link="logit")
+EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),resid=4,aclag=10,steps=12,validation=T,graph=T,print=T,check=F,link="log")
   
 {
   k<-0 #default
@@ -187,7 +186,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     for(i in (m+1):n)
     {
       eta1[i] <- X[i,1]%*%as.matrix(lambda0) + sum(lambda1*(ynew[i-1]))
-      eta2[i] <- X[i,1]%*%as.matrix(beta0) + X[i,2:ncol(X)]%*%as.matrix(beta)+ sum(ar_par*(ynew[i-ar_ind]-X[i-ar_ind,2:ncol(X)]%*%as.matrix(beta)) ) 
+      eta2[i] <- X[i,1]%*%as.matrix(beta0) + X[i,2:ncol(X)]%*%as.matrix(beta)+ sum(ar_par*(ynew[i-ar_ind])) 
       error[i] <- ynew[i]-linkinv(eta2[i]) #residuals 
     }
     lambda <-exp(eta1[(m+1):n])/(exp(eta1[(m+1):n])+1)##inversa logit
@@ -227,7 +226,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     for(i in (m+1):n)
     {
       eta1[i] <- X[i,1]%*%as.matrix(lambda0) + sum(lambda1*(ynew[i-1]))
-      eta2[i] <- X[i,1]%*%as.matrix(beta0) + X[i,2:ncol(X)]%*%as.matrix(beta)+ sum(ar_par*(ynew[i-ar_ind]-X[i-ar_ind,2:ncol(X)]%*%as.matrix(beta)) ) 
+      eta2[i] <- X[i,1]%*%as.matrix(beta0) + X[i,2:ncol(X)]%*%as.matrix(beta)+ sum(ar_par*(ynew[i-ar_ind])) 
       error[i] <- ynew[i]-linkinv(eta2[i])
     }
     lambda <-exp(eta1[(m+1):n])/(exp(eta1[(m+1):n])+1)
@@ -274,7 +273,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     {
       for(j in 1:k)
       {
-        B[i,j] <- X[i+m,1+j] - sum(ar_par*X[i+m-ar_ind,1+j])
+        B[i,j] <- X[i+m,1+j]
       }
     }
     deta.dbeta0 <- matrix(0,ncol=1,nrow=n)
@@ -292,7 +291,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     {
       for(j in 1:P1)
       {
-        As[i,j] <- (ynew[i+m-(S*AR[j])]-X[i+m-(S*AR[j]),2:ncol(X)]%*%as.matrix(beta))
+        As[i,j] <- (ynew[i+m-(S*AR[j])])
       }
     }  
     
@@ -363,7 +362,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   z$delta=m
   z$roots=c(abs(polyroot(vector.root(z$AR,z$Phi))))
   z$RMC=0
-  if(any(z$roots<1)){warning("root(s) within the unity circle");z$RMC=1}
+ # if(any(z$roots<1)){warning("root(s) within the unity circle");z$RMC=1}
   
   errorhat <- rep(0,n) # E(error)=0
   etahat1 <- rep(0,n)
@@ -377,7 +376,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   for(i in (m+1):n)
   {
     etahat1[i] <- X[i,1]%*%as.matrix(lambda0) + sum(lambda1*(ynew[i-1]))
-    etahat2[i] <- X[i,1]*beta0 + X[i,2:ncol(X)]%*%as.matrix(beta) + sum(ar_par*(ynew[i-ar_ind]-X[i-ar_ind,2:ncol(X)]%*%as.matrix(beta)) ) 
+    etahat2[i] <- X[i,1]*beta0 + X[i,2:ncol(X)]%*%as.matrix(beta) + sum(ar_par*(ynew[i-ar_ind])) 
     errorhat[i] <- ynew[i]-linkinv(etahat2[i])
   }
   lambdahat <-exp(etahat1[(m+1):n])/(exp(etahat1[(m+1):n])+1)
@@ -419,7 +418,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     {
       for(j in 1:k)
       {
-        B[i,j] <- X[i+m,1+j] - sum(ar_par*X[i+m-ar_ind,1+j])
+        B[i,j] <- X[i+m,1+j]
       }
     }
     L <- matrix(rep(NA,(n-m)),ncol=1)#lambda1
@@ -433,72 +432,61 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     {
       for(j in 1:P1)
       {
-        As[i,j] <- (ynew[i-(S*AR[j])]-X[i-(S*AR[j]),2:ncol(X)]%*%as.matrix(beta))
+        As[i,j] <- (ynew[i-(S*AR[j])])
       }
     }    
     
-    BAs <- array(NA,c(k,P1,(n-m)))# beta(SAR)
-    for(i in 1:(n-m))
-    {
-      for(b in 1:P1)
-      {
-        for(a in 1:k)
-        {
-          BAs[a,b,i] <- -X[i+m-(S*AR[b]),(1+a)]
-        }
-      } 
-    }
     deta.dbeta0 <- matrix(0,ncol=1,nrow=n)
     deta.dbeta <- matrix(0,ncol=k,nrow=n)
     deta.dPHI <- matrix(0, ncol=P1,nrow=n)
-    deta.dbeta0beta0<- matrix(0, ncol=1,nrow=n)
-    deta.dbeta0beta<- matrix(0, ncol=k,nrow=n)
-    deta.dbeta0PHI<- matrix(0, ncol=P1,nrow=n)
-    deta.dbetabeta<- array(0,dim=c(k,k,n))
-    deta.dbetaPHI<- array(0,dim=c(k,P1,n))
-    deta.dPHIPHI<-array(0,dim=c(P1,P1,n))
+    # deta.dbeta0beta0<- matrix(0, ncol=1,nrow=n)
+    # deta.dbeta0beta<- matrix(0, ncol=k,nrow=n)
+    # deta.dbeta0PHI<- matrix(0, ncol=P1,nrow=n)
+    # deta.dbetabeta<- array(0,dim=c(k,k,n))
+    # deta.dbetaPHI<- array(0,dim=c(k,P1,n))
+    # deta.dPHIPHI<-array(0,dim=c(P1,P1,n))
      for(i in (m+1):n)
     {
       deta.dbeta0[i,]<- B0[(i-m),] #+  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0[i-ma_ind,])
       deta.dbeta[i,]<- B[(i-m),]# +  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta[i-ma_ind,])
       deta.dPHI[i,]<- As[i,] #+  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dPHI[i-ma_ind,])
-      deta.dbeta0beta0[i,]<- 0# + ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0beta0[i-ma_ind,])
-      deta.dbeta0beta[i,]<-rep(0,k) #+  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0beta[i-ma_ind,])
-      deta.dbeta0PHI[i,]<- rep(0,P1)# +  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0PHI[i-ma_ind,])
-     
-      for(b in 1:k)
-      {
-        for(a in 1:k)
-        {
-          deta.dbetabeta[a,b,i] <- 0 #+ ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbetabeta[a,b,i-ma_ind])
-          
-        }
-      }
-      for(b in 1:P1)
-      {
-        for(a in 1:k)
-        {
-          deta.dbetaPHI[a,b,i]<- BAs[a,b,(i-m)] #+ ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbetaPHI[a,b,i-ma_ind])
-          
-        }
-      }
-      for(b in 1:P1)
-      {
-        for(a in 1:P1)
-        {
-          deta.dPHIPHI[a,b,i]<- 0 #+  sum(ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dPHIPHI[a,b,i-ma_ind]))
-        }
-      }
+      # deta.dbeta0beta0[i,]<- 0# + ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0beta0[i-ma_ind,])
+      # deta.dbeta0beta[i,]<-rep(0,k) #+  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0beta[i-ma_ind,])
+      # deta.dbeta0PHI[i,]<- rep(0,P1)# +  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0PHI[i-ma_ind,])
+      # 
+      # for(b in 1:k)
+      # {
+      #   for(a in 1:k)
+      #   {
+      #     deta.dbetabeta[a,b,i] <- 0 #+ ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbetabeta[a,b,i-ma_ind])
+      #     
+      #   }
+      # }
+      # for(b in 1:P1)
+      # {
+      #   for(a in 1:k)
+      #   {
+      #     deta.dbetaPHI[a,b,i]<- BAs[a,b,(i-m)] #+ ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbetaPHI[a,b,i-ma_ind])
+      #     
+      #   }
+      # }
+      # for(b in 1:P1)
+      # {
+      #   for(a in 1:P1)
+      #   {
+      #     deta.dPHIPHI[a,b,i]<- 0 #+  sum(ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dPHIPHI[a,b,i-ma_ind]))
+      #   }
+      # }
      }
     mM0 <- matrix(deta.dbeta0[(m+1):n,],ncol=1,nrow=(n-m))
     PP <- matrix(deta.dPHI[(m+1):n,], ncol=P1,nrow=(n-m))
-    mM02<- matrix(deta.dbeta0beta0[(m+1):n,], ncol=1,nrow=(n-m))
-    B0P<- matrix(deta.dbeta0PHI[(m+1):n,], ncol=P1,nrow=(n-m))
-    PP2<- array(deta.dPHIPHI[,,(m+1):n],dim=c(P1,P1,(n-m)))
+    # mM02<- matrix(deta.dbeta0beta0[(m+1):n,], ncol=1,nrow=(n-m))
+    # B0P<- matrix(deta.dbeta0PHI[(m+1):n,], ncol=P1,nrow=(n-m))
+    # PP2<- array(deta.dPHIPHI[,,(m+1):n],dim=c(P1,P1,(n-m)))
     mM <- matrix(deta.dbeta[(m+1):n,], ncol=k,nrow=(n-m))
-    B0B<-matrix(deta.dbeta0beta[(m+1):n,], ncol=k,nrow=(n-m))
-    mM2<- array(deta.dbetabeta[,,(m+1):n],dim=c(k,k,(n-m)))
-    BP<- array(deta.dbetaPHI[,,(m+1):n],dim=c(k,P1,(n-m)))
+    # B0B<-matrix(deta.dbeta0beta[(m+1):n,], ncol=k,nrow=(n-m))
+    # mM2<- array(deta.dbetabeta[,,(m+1):n],dim=c(k,k,(n-m)))
+    # BP<- array(deta.dbetaPHI[,,(m+1):n],dim=c(k,P1,(n-m)))
    
      ####START SECOND DERIVATIVE FROM LOG LIKELIHOOD IN RESPECT TO lambda
     ###########################################################################################################
@@ -599,7 +587,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   
   if(Ksolve[1] == "error")
   {z$RMC=1#used at Monte-Carlo simulation for discard from the sample
-  warning("Analytic Fisher Fisher Information Matrix is not positive semi-definite")
+  warning("Analytic Fisher Information Matrix is not positive semi-definite")
   return(z)#if Analytic Fisher Information Matrix is not positive semi-definite, do not calculate
   }else{sol=try(solve(K))}
   
@@ -850,24 +838,21 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   if(steps!=0){
     eta1_prev <- c(ynew,rep(NA,steps))
     eta2_prev <- c(ynew,rep(NA,steps))
-    y_prev <- c(z$fitted,rep(NA,steps))#iniciando forecast com o fitted tradicional
-    X_prev<-matrix(rep(1,(n+steps)), nrow=(n+steps), ncol=1, byrow=F)
-    
+    y_prev <- c(ynew,rep(NA,steps))
     ntotal<-n+steps
     X_prev <- matrix(c(rep(1,ntotal),exvar), nrow=ntotal, ncol=(k+1),byrow = F)
-    
+    lambdaf<-muf<-NA
     for(i in 1:steps) 
     {
-      eta1_prev[n+i] <- X_prev[n+i,1]%*%as.matrix(z$lambda0) + sum(z$lambda1*(eta1_prev[n+i-1]))
-      eta2_prev[n+i] <- X_prev[n+i,1]%*%as.matrix(z$beta0)+ X_prev[n+i,2:ncol(X_prev)]%*%as.matrix(z$beta) + sum(ar_par*(eta2_prev[n+i-ar_ind]-X_prev[n+i-ar_ind,2:ncol(X_prev)]%*%as.matrix(z$beta)) ) #- sum(ma_par*errorhat[n+i-ma_ind])
-      
-      y_prev[n+i] <- linkinv(eta2_prev[n+i])
+      eta1_prev[n+i] <- X_prev[n+i,1]%*%as.matrix(z$lambda0) + sum(z$lambda1*(y_prev[n+i-1]))
+      lambdaf[i] <-exp(eta1_prev[n+i])/(exp(eta1_prev[n+i])+1)
+      eta2_prev[n+i] <- X_prev[n+i,1]%*%as.matrix(z$beta0)+ X_prev[n+i,2:ncol(X_prev)]%*%as.matrix(z$beta) + sum(ar_par*(y_prev[n+i-ar_ind]))
+      muf[i]<-linkinv(eta2_prev[n+i]) 
+      y_prev[n+i] <-ir.q(rep(0.5,1),lambda=lambdaf[i],mu=muf[i])
       errorhat[n+i] <- 0 # residuals on the original scale y-mu  
+      }
+    z$forecast<-ts(c(rep(NA,n),y_prev[(n+1):(n+steps)]),start=start(y),frequency=frequency(y))  
     }
-    
-    lambdaf <-exp(eta1_prev[(n+1):(n+steps)])/(exp(eta1_prev[(n+1):(n+steps)])+1)
-    z$forecast<-ts(c(rep(NA,n),ir.q(rep(0.5,length(lambdaf)),lambda=lambdaf,mu=y_prev[(n+1):(n+steps)])),start=start(y),frequency=frequency(y))     
-  }
   ########################################################################
   ########################   forecast analysis   #########################
   ########################################################################
@@ -1047,7 +1032,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
           par(mfrow=c(1,1))
           par(mar=c(2.8, 2.7, 1, 1)) # margens c(baixo,esq,cima,direia)
           par(mgp=c(1.7, 0.45, 0))
-          plot(y_prev,type="l",col="blue",lty=2, ylim=c(min(y),max(y)),ylab="Serie",xlab="Time")
+          plot(c(z$fitted,y_prev[(n+1):(n+steps)]),type="l",col="blue",lty=2, ylim=c(min(y),max(y)),ylab="Serie",xlab="Time")
           abline(v=fim,lty=2)
           abline(v=n,lty=2)
           lines(as.vector(y))
@@ -1120,18 +1105,18 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     print(rbind(score(opt$par),gradient(loglik,opt$par)))
     print("rbind(score(opt2$par),gradient(loglik,opt2$par))")
     print(rbind(score(opt2$par),gradient(loglik,opt2$par)))
-    print("-hessiana = Matriz de informação observada condicional")
-    print(round(K,4))
-    print("hessiana numerica")
-    print(round(-opt$hessian,4))
-    print("comparando meu cálculo com hessiana da estimação numérica")
-    print(round((K+opt2$hessian),2))
-    print("comparando meu cálculo com hessiana numérica da estimação analítica")
-    print(round((K+opt$hessian),2))
-    print("soma diferença hessiana otimização numérica")
-    print(round(sum(abs(K+opt2$hessian)),2))
-    print("soma diferença hessiana numérica otimização analítica")
-    print(round(sum(abs(K+opt$hessian)),2))
+    # print("-hessiana = Matriz de informação observada condicional")
+    # print(round(K,4))
+    # print("hessiana numerica")
+    # print(round(-opt$hessian,4))
+    # print("comparando meu cálculo com hessiana da estimação numérica")
+    # print(round((K+opt2$hessian),2))
+    # print("comparando meu cálculo com hessiana numérica da estimação analítica")
+    # print(round((K+opt$hessian),2))
+    # print("soma diferença hessiana otimização numérica")
+    # print(round(sum(abs(K+opt2$hessian)),2))
+    # print("soma diferença hessiana numérica otimização analítica")
+    # print(round(sum(abs(K+opt$hessian)),2))
   }
   return(z)
   
