@@ -346,15 +346,15 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   reg <- c(0,rep(0,p1+q1+k), length(y1[which(y1==0)])/length(y1)#,0
            ) 
   z=c()
-  # opt.error<- tryCatch(optim(reg, loglik, score, method = "BFGS", control =
-  #                              list(fnscale = -1)), error = function(e) return("error")) 
-  # if(opt.error[1] ==
-  #    "error")
-  # {z$RMC=1
-  # #stop("optim error")
-  # warning("optim error")
-  # return(z)
-  # }
+  opt.error<- tryCatch(optim(reg, loglik, score, method = "BFGS", control =
+                               list(fnscale = -1)), error = function(e) return("error"))
+  if(opt.error[1] ==
+     "error")
+  {z$RMC=1
+  #stop("optim error")
+  warning("optim error")
+  return(z)
+  }
   
   opt <- optim(reg, loglik, score,method = "BFGS",hessian=T,control = list(fnscale = -1))#, maxit = maxit1, reltol = 1e-12))
   
