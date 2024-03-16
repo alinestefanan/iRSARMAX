@@ -561,7 +561,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     # pp2<- array(deta.dphiphi[,,(m+1):n],dim=c(p1,p1,(n-m)))
     # pq=array(deta.dphitheta[,,(m+1):n],dim=c(p1,q1,(n-m)))
     # qq2=array(deta.dthetatheta[,,(m+1):n],dim=c(q1,q1,(n-m)))
-    # mM <- matrix(deta.dbeta[(m+1):n,], ncol=k,nrow=(n-m))
+     mM <- matrix(deta.dbeta[(m+1):n,], ncol=k,nrow=(n-m))
     # B0B<-matrix(deta.dbeta0beta[(m+1):n,], ncol=k,nrow=(n-m))
     # mM2<- array(deta.dbetabeta[,,(m+1):n],dim=c(k,k,(n-m)))
     # Bp<- array(deta.dbetaphi[,,(m+1):n],dim=c(k,p1,(n-m)))
