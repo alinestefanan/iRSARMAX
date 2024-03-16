@@ -511,12 +511,12 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     mM0 <- matrix(deta.dbeta0[(m+1):n,],ncol=1,nrow=(n-m))
     qq <- matrix(deta.dtheta[(m+1):n,], ncol=q1,nrow=(n-m))
     QQ <- matrix(deta.dTHETA[(m+1):n,], ncol=Q1,nrow=(n-m))
-    mM02<- matrix(deta.dbeta0beta0[(m+1):n,], ncol=1,nrow=(n-m))
-    B0q=matrix(deta.dbeta0theta[(m+1):n,], ncol=q1,nrow=(n-m))
-    B0Q=matrix(deta.dbeta0THETA[(m+1):n,], ncol=Q1,nrow=(n-m))
-    qq2=array(deta.dthetatheta[,,(m+1):n],dim=c(q1,q1,(n-m)))
-    qQ=array(deta.dthetaTHETA[,,(m+1):n],dim=c(q1,Q1,(n-m)))
-    QQ2=array(deta.dTHETATHETA[,,(m+1):n],dim=c(Q1,Q1,(n-m)))
+    # mM02<- matrix(deta.dbeta0beta0[(m+1):n,], ncol=1,nrow=(n-m))
+    # B0q=matrix(deta.dbeta0theta[(m+1):n,], ncol=q1,nrow=(n-m))
+    # B0Q=matrix(deta.dbeta0THETA[(m+1):n,], ncol=Q1,nrow=(n-m))
+    # qq2=array(deta.dthetatheta[,,(m+1):n],dim=c(q1,q1,(n-m)))
+    # qQ=array(deta.dthetaTHETA[,,(m+1):n],dim=c(q1,Q1,(n-m)))
+    # QQ2=array(deta.dTHETATHETA[,,(m+1):n],dim=c(Q1,Q1,(n-m)))
     
     ####START SECOND DERIVATIVE FROM LOG LIKELIHOOD IN RESPECT TO lambda
     ###########################################################################################################
