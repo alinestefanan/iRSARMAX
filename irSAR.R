@@ -769,7 +769,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     {
       eta1_prev[n+i] <- X_prev[n+i,]%*%as.matrix(z$lambda0) + sum(z$lambda1*(y_prev[n+i-1]))
       lambdaf[i] <-exp(eta1_prev[n+i])/(exp(eta1_prev[n+i])+1)
-      eta2_prev[n+i] <- X_prev[n+i,]%*%as.matrix(z$beta0) + sum(ar_par*(ey_prev[n+i-ar_ind]) )
+      eta2_prev[n+i] <- X_prev[n+i,]%*%as.matrix(z$beta0) + sum(ar_par*(y_prev[n+i-ar_ind]) )
       muf[i]<-linkinv(eta2_prev[n+i]) 
       y_prev[n+i] <-ir.q(rep(0.5,1),lambda=lambdaf[i],mu=muf[i])
       errorhat[n+i] <- 0 # residuals on the original scale y-mu   
