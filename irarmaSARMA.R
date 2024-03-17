@@ -376,7 +376,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   
   reg <- c(0,rep(0,p1+q1+P1+Q1), length(y1[which(y1==0)])/length(y1),0) 
   z=c()
-  opt.error<- tryCatch(optim(reg, loglik, score, method = "BFGS", control = list(fnscale = -1)), error = function(e) return("error")) 
+  opt.error<- tryCatch(optim(reg, loglik, score, method = "BFGS", control = list(fnscale = -1)), error = function(e) return("error"))
   if(opt.error[1] ==  "error")
   {z$RMC=1
   warning("optim error")
@@ -567,7 +567,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
       deta.dtheta[i,]<- R[(i-m),] +  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dtheta[i-ma_ind,])
       deta.dPHI[i,]<- As[i,] +  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dPHI[i-ma_ind,])
       deta.dTHETA[i,]<- Rs[i,] +  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dTHETA[i-ma_ind,])
-      deta.dbeta0beta0[i,]<- 0 + ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0beta0[i-ma_ind,])
+      #deta.dbeta0beta0[i,]<- 0 + ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0beta0[i-ma_ind,])
       # deta.dbeta0phi[i,]<- rep(0,p1) + ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0phi[i-ma_ind,])
       # for(a in 1:q1)
       # {
