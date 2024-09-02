@@ -89,6 +89,11 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     Qu=c()
     for (i in 1:n){
       #print("lambda[i]");print(lambda[i])
+      if(is.na(lambda[i]))
+      {z$RMC=1
+      warning("lambda error")
+      return(z)
+      }
       if(u[i]<=lambda[i]){Qu[i]=0}#acumulada quando y é zero
       else{
         Qu[i]<- (sqrt(-4*(mu[i]^2)*log(1-(u[i]-lambda[i])/(1-lambda[i]))/pi))
@@ -356,7 +361,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   
   reg <- c(0,rep(0,p1+q1+P1), length(y1[which(y1==0)])/length(y1),0) 
   z=c()
-  opt.error<- tryCatch(optim(reg, loglik, score, method = "BFGS", control =list(fnscale = -1)), error = function(e) return("error")) 
+  opt.error<- tryCatch(optim(reg, loglik, score, method = "BFGS", control =list(fnscale = -1)), error = function(e) return("error"))
   if(opt.error[1] ==  "error")
                                {z$RMC=1
                                #stop("optim error")
@@ -983,13 +988,29 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
       y_prev[n+i] <-ir.q(rep(0.5,1),lambda=lambdaf[i],mu=muf[i])
       errorhat[n+i] <- 0 # residuals on the original scale y-mu  
     }
-    z$forecast<-ts(c(rep(NA,n),y_prev[(n+1):(n+steps)]),start=start(y),frequency=frequency(y))    
+    z$forecast<-ts(c(rep(NA,n),y_prev[(n+1):(n+steps)]),start=start(y),frequency=frequency(y))   
+    
+    #### rolling window forecast
+    
+    yr_prev <- c(z$fitted,rep(NA,steps))
+    eta1_rw <- c(ynew,rep(NA,steps))
+    eta2_rw <- c(ynew,rep(NA,steps))
+    murwf<-lambdarwf<-NA
+    for(i in 1:steps)
+    {
+      eta1_rw[n+i] <- X_prev[n+i,]%*%as.matrix(z$lambda0) + sum(z$lambda1*(y[n+i-1]))
+      lambdarwf[i] <-exp(eta1_rw[n+i])/(exp(eta1_rw[n+i])+1)
+      eta2_rw[n+i] <- X_prev[n+i,1]*z$beta0 + sum(ar_par*(y[n+i-ar_ind]) ) - sum(ma_par*errorhat[n+i-ma_ind])
+      murwf[i] <- linkinv(eta2_rw[n+i])
+      yr_prev[n+i] <-ir.q(rep(0.5,1),lambda=lambdarwf[i],mu=murwf[i])
+    }
+    z$rollingforecast<-ts(c(rep(NA,n),yr_prev[(n+1):(n+steps)]),start=start(y),frequency=frequency(y)) 
     }
   ########################################################################
   ########################   forecast analysis   #########################
   ########################################################################
   
-  measures.forecast=function(yforecast){
+  measures.forecast=function(yforecast, steps){
     #print("yforecast");print(yforecast)
     ams=c()
     maef<-sum(abs(y[(n+1):(n+steps)]-yforecast[(n+1):(n+steps)]))/(steps)
@@ -1036,7 +1057,15 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   
   if(steps!=0){
     if(validation==T){
-      z$accuracyforecast<-measures.forecast(z$forecast)
+      accuracytraditionalforecast<-accuracyrollingwindow<-matrix(rep(NA,5*steps),nrow=steps, ncol=5, byrow=T)
+      colnames(accuracytraditionalforecast) <- colnames(accuracyrollingwindow) <- c("MAE","RMSE","MdRAE","MASE","MDA")
+      rownames(accuracytraditionalforecast) <- rownames(accuracyrollingwindow) <- 1:steps
+      for (i in 1:steps){
+        accuracytraditionalforecast[i,]<-measures.forecast(y_prev,steps=i)
+        accuracyrollingwindow[i,]<-measures.forecast(yr_prev,steps=i)
+      }
+      z$accuracyforecast<-accuracytraditionalforecast
+      z$accuracyrollingwindow<-accuracyrollingwindow
     }
   }
   
@@ -1219,12 +1248,16 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     message("")
     print(z$diagnosticfitted)
     message("")
-    print("Accuracy fitted",quote=F)
+    print("Fitted accuracy",quote=F)
     print(z$accuracyfitted)
     message("")
     if(steps!=0 & validation==T){
-      print("Accuracy forecast",quote=F)
-      print(z$accuracyforecast)}
+      print("Traditional forecast accuracy:",quote=F)
+      print(z$accuracyforecast)
+      message("")
+      print("Rolling window forecast accuracy:",quote=F)
+      print(z$accuracyrollingwindow)
+    }
   }
   
   if(check==TRUE){
