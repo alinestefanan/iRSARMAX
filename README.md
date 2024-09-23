@@ -5,6 +5,6 @@ This repository contains an R implementation of:
 > the selection model algorithm to iRSARMAX model, called auto.irarma function.
 For an application example, please open the file "example.R".
 
-If you have any problem, please contact Aline Armanini Stefanan (aline.armanini@acad.ufsm.br;aline4876@gmail.com).
+If you have any problem, please contact Aline Armanini Stefanan (aline.armanini@acad.ufsm.br; aline4876@gmail.com).
 
-Created by Aline Armanini Stefanan (aline.armanini@acad.ufsm.br;aline4876@gmail.com)
+Created by Aline Armanini Stefanan (aline.armanini@acad.ufsm.br; aline4876@gmail.com)
