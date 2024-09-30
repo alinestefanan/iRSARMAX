@@ -1,10 +1,9 @@
 # y: time series
 # S: seasonal periodicity
 # exvar: covariate column matrix
-# resid: 0 = real-observed; 1 = Standardized residuals; 2 = Deviance residuals; 3 = Quantile residuals; 4 = Randomized quantile residuals with uniform distribution
 # steps: how many steps to forecast
 
-EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),resid=4,aclag=10,steps=12,validation=T,graph=T,print=T,check=F,link="log")
+EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matrix(NA, nrow=1, ncol=1, byrow=F),aclag=10,steps=12,validation=T,graph=T,print=T,check=F,link="log")
   
 {
   k<-0 #default
@@ -186,7 +185,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     PHI = z[(p1+q1+k+2):(p1+q1+P1+k+1)]
     THETA = z[(p1+P1+q1+k+2):(p1+P1+q1+Q1+k+1)]
     lambda0 <- z[(p1+P1+q1+Q1+k+2)] 
-   # lambda1 <- z[(p1+P1+q1+Q1+k+3)]
+    # lambda1 <- z[(p1+P1+q1+Q1+k+3)]
     
     error<-rep(0,n) # E(error)=0 
     eta1<-rep(NA,n)
@@ -290,7 +289,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     
     ylstar <- matrix((Ulambda),ncol=1)
     ymstar <- matrix((mustar),ncol=1)
-      
+    
     B0 <- matrix(rep(NA,(n-m)),ncol=1)#intercept
     for(i in 1:(n-m))
     {
@@ -380,17 +379,17 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     UPHI <-    t(PP) %*% mT2 %*% ymstar
     UTHETA <-  t(QQ) %*% mT2 %*% ymstar
     Ulambda0=t(B0) %*% mT1 %*% ylstar
-   # Ulambda1=t(L) %*% mT1 %*% ylstar
+    # Ulambda1=t(L) %*% mT1 %*% ylstar
     
     score<-c(Ubeta0,Ubeta,Uphi,Utheta, UPHI,UTHETA,Ulambda0#,Ulambda1
-             )
+    )
     return(score)
   }#fim score
   
   y1<-y[(m+1):n] 
   
   reg <- c(0,rep(0,p1+q1+P1+Q1+k), length(y1[which(y1==0)])/length(y1)#,0
-           ) 
+  ) 
   z=c()
   # opt.error<- tryCatch(optim(reg, loglik, score, method = "BFGS", control =
   #                              list(fnscale = -1)), error = function(e) return("error")) 
@@ -412,9 +411,9 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   }
   
   z$conv <- opt$conv
- # print(opt$par)
+  # print(opt$par)
   coef <- (opt$par)[1:(k+p1+q1+P1+Q1+2#3
-                       )]
+  )]
   z$coeff <- coef
   
   beta0 <-coef[1] #intercept
@@ -424,7 +423,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   PHI <-coef[(k+p1+q1+2):(k+p1+q1+P1+1)] #AR
   THETA <-coef[(k+p1+P1+q1+2):(k+p1+P1+q1+Q1+1)] #MA
   lambda0 <-coef[(k+p1+P1+q1+Q1+2)] # lambda parameter
- # lambda1 <-coef[(k+p1+P1+q1+Q1+3)]
+  # lambda1 <-coef[(k+p1+P1+q1+Q1+3)]
   
   z$beta0 <- beta0
   z$beta <- beta
@@ -433,7 +432,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   z$Phi <- PHI
   z$Theta <- THETA
   z$lambda0 <- lambda0
-#  z$lambda1 <- lambda1
+  #  z$lambda1 <- lambda1
   
   z$ar=ar
   z$ma=ma
@@ -442,7 +441,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   z$delta=m
   z$roots=c(abs(polyroot(vector.root(z$ar,z$phi))),abs(polyroot(vector.root(z$ma,z$theta))),abs(polyroot(vector.root(z$AR,z$Phi))),abs(polyroot(vector.root(z$MA,z$Theta))))
   z$RMC=0
-# if(any(z$roots<1)){warning("root(s) within the unity circle");z$RMC=1}
+  # if(any(z$roots<1)){warning("root(s) within the unity circle");z$RMC=1}
   
   errorhat <- rep(0,n) # E(error)=0
   etahat1 <- rep(0,n)
@@ -469,9 +468,9 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   z$lambdahat=lambdahat
   muhat <- linkinv(etahat2[(m+1):n])
   y1 <- y[(m+1):n]
-  # z$fitted <- ts(c(rep(NA,m),muhat),start=start(y),frequency=frequency(y))
-  z$fitted<-ts(c(rep(NA,m),ir.q(u=rep(0.5,length(lambdahat)),lambda=lambdahat,mu=muhat)),start=start(y),frequency=frequency(y)) 
-  z$etahat2 <- etahat2
+  z$fitted_mu <- ts(c(rep(NA,m),muhat),start=start(y),frequency=frequency(y))
+  z$fitted_imean <- ts(c(rep(NA,m),(1-lambdahat)*muhat),start=start(y),frequency=frequency(y))
+  z$fitted_imedian<-ts(c(rep(NA,m),ir.q(u=rep(0.5,length(lambdahat)),lambda=lambdahat,mu=muhat)),start=start(y),frequency=frequency(y))
   z$errorhat <- errorhat
   
   ########################################################################
@@ -544,57 +543,13 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
         Rs[i,j] <- -sum(errorhat[i-c(S*MA[j],S*MA[j]+(ma))]*c(1,-theta))
       }
     }
-    # aAs <- array(NA,c(p1,P1,n))# arSAR
-    # for(i in (m+1):n)
-    # {
-    #   for(b in 1:P1)
-    #   {
-    #     for(a in 1:p1)
-    #     {
-    #       aAs[a,b,i] <- -(ynew[i-(S*AR[b]+ar[a])]-X[i-(S*AR[b]+ar[a]),2:ncol(X)]%*%as.matrix(beta))
-    #     }
-    #   }
-    # }
-    # 
-    # RRs <- array(NA,c(q1,Q1,n))# theta(THETA SMA)
-    # for(i in (m+1):n)
-    # {
-    #   for(b in 1:Q1)
-    #   {
-    #     for(a in 1:q1)
-    #     {
-    #       RRs[a,b,i] <- errorhat[i-(S*MA[b]+ma[a])]
-    #     }
-    #   }
-    # }
     deta.dbeta0 <- matrix(0,ncol=1,nrow=n)
     deta.dbeta <- matrix(0,ncol=k,nrow=n)
     deta.dphi <- matrix(0, ncol=p1,nrow=n)
     deta.dtheta<- matrix(0, ncol=q1,nrow=n)
     deta.dPHI <- matrix(0, ncol=P1,nrow=n)
     deta.dTHETA <- matrix(0, ncol=Q1,nrow=n)
-    # deta.dbeta0beta0<- matrix(0, ncol=1,nrow=n)
-    # deta.dbeta0beta<- matrix(0, ncol=k,nrow=n)
-    # deta.dbeta0phi<- matrix(0, ncol=p1,nrow=n)
-    # deta.dbeta0theta<- matrix(0, ncol=q1,nrow=n)
-    # deta.dbeta0PHI<- matrix(0, ncol=P1,nrow=n)
-    # deta.dbeta0THETA<- matrix(0, ncol=Q1,nrow=n)
-    # deta.dbetabeta<- array(0,dim=c(k,k,n))
-    # deta.dbetaphi <- array(0,dim=c(k,p1,n))
-    # deta.dbetatheta <- array(0,dim=c(k,q1,n))
-    # deta.dbetaPHI<- array(0,dim=c(k,P1,n))
-    # deta.dbetaTHETA <- array(0,dim=c(k,Q1,n))
-    # deta.dphiphi<-array(0,dim=c(p1,p1,n))
-    # deta.dphitheta<-array(0,dim=c(p1,q1,n))
-    # deta.dphiPHI<-array(0,dim=c(p1,P1,n))
-    # deta.dphiTHETA<-array(0,dim=c(p1,Q1,n))
-    # deta.dthetatheta<-array(0,dim=c(q1,q1,n))
-    # deta.dthetaPHI<-array(0,dim=c(q1,P1,n))
-    # deta.dthetaTHETA<-array(0,dim=c(q1,Q1,n))
-    # deta.dPHItheta<-array(0,dim=c(P1,q1,n))
-    # deta.dPHIPHI<-array(0,dim=c(P1,P1,n))
-    # deta.dPHITHETA<-array(0,dim=c(P1,Q1,n))
-    # deta.dTHETATHETA<-array(0,dim=c(Q1,Q1,n))
+    
     for(i in (m+1):n)
     {
       deta.dbeta0[i,]<- B0[(i-m),] +  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0[i-ma_ind,])
@@ -603,129 +558,6 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
       deta.dtheta[i,]<- R[(i-m),] +  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dtheta[i-ma_ind,])
       deta.dPHI[i,]<- As[i,] +  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dPHI[i-ma_ind,])
       deta.dTHETA[i,]<- Rs[i,] +  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dTHETA[i-ma_ind,])
-      # deta.dbeta0beta0[i,]<- 0 + ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0beta0[i-ma_ind,])
-      # deta.dbeta0beta[i,]<-rep(0,k) +  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0beta[i-ma_ind,])
-      # deta.dbeta0phi[i,]<- rep(0,p1) + ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0phi[i-ma_ind,])
-      # for(a in 1:q1)
-      # {
-      #   deta.dbeta0theta[i,a] = deta.dbeta0[i-ma[a],] +ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0theta[i-ma_ind,a])
-      # }
-      # deta.dbeta0PHI[i,]<- rep(0,P1) +  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0PHI[i-ma_ind,])
-      # for(b in 1:Q1)
-      # {
-      #   deta.dbeta0THETA[i,b] = deta.dbeta0[i-MA[b]*S,] -sum(theta%*%deta.dbeta0[i-(ma+MA[b]*S),]) + sum(ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbeta0THETA[i-ma_ind,b]))
-      #   
-      # }
-      # for(b in 1:k)
-      # {
-      #   for(a in 1:k)
-      #   {
-      #     deta.dbetabeta[a,b,i] <- 0 + ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbetabeta[a,b,i-ma_ind])
-      #       
-      #   }
-      # }
-      # for(b in 1:p1)
-      # {
-      #   for(a in 1:k)
-      #   {
-      #     deta.dbetaphi[a,b,i] <- bA[a,b,(i-m)] + ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbetaphi[a,b,i-ma_ind])
-      #       
-      #   }
-      # }
-      # for(b in 1:q1)
-      # {
-      #   for(a in 1:k)
-      #   {
-      #     deta.dbetatheta[a,b,i] <- deta.dbeta[i-ma[b],a] - sum(THETA%*%deta.dbeta[i-(ma[b]+MA*S),a]) + sum(ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbetatheta[a,b,i-ma_ind]))
-      #   }
-      # }
-      # for(b in 1:P1)
-      # {
-      #   for(a in 1:k)
-      #   {
-      #     deta.dbetaPHI[a,b,i]<- BAs[a,b,(i-m)] + ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbetaPHI[a,b,i-ma_ind])
-      #       
-      #   }
-      # }
-      # for(b in 1:Q1)
-      # {
-      #   for(a in 1:k)
-      #   {
-      #     deta.dbetaTHETA[a,b,i] <- deta.dbeta[i-MA[b]*S,a] + ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dbetaTHETA[a,b,i-ma_ind])
-      #       
-      #   }
-      # }
-      # for(b in 1:p1)
-      # {
-      #   for(a in 1:p1)
-      #   {
-      #     deta.dphiphi[a,b,i]<- 0 + ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dphiphi[a,b,i-ma_ind])
-      #     
-      #   }
-      # }
-      # for(b in 1:q1)
-      # {
-      #   for(a in 1:p1)
-      #   {
-      #     deta.dphitheta[a,b,i]= deta.dphi[i-ma[b],a] +ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dphitheta[a,b,i-ma_ind])
-      #   }
-      # }
-      # for(b in 1:P1)
-      # {
-      #   for(a in 1:p1)
-      #   {
-      #     deta.dphiPHI[a,b,i]<- aAs[a,b,i] +  ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dphiPHI[a,b,i-ma_ind])
-      #   }
-      # }
-      # for(b in 1:Q1)
-      # {
-      #   for(a in 1:p1)
-      #   {
-      #     deta.dphiTHETA[a,b,i]<- deta.dphi[i-MA[b]*S,a] -sum(theta%*%deta.dphi[i-(ma+MA[b]*S),a]) +  sum(ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dphiTHETA[a,b,i-ma_ind]))
-      #   }
-      # }
-      # for(b in 1:q1)
-      # {
-      #   for(a in 1:q1)
-      #   {
-      #     deta.dthetatheta[a,b,i]= deta.dtheta[i-ma[a],b] +deta.dtheta[i-ma[b],a]+ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dthetatheta[a,b,i-ma_ind])
-      #   }
-      # }
-      # for(b in 1:Q1)
-      # {
-      #   for(a in 1:q1)
-      #   {
-      #     deta.dthetaTHETA[a,b,i]= deta.dtheta[i-MA[b]*S,a]+RRs[a,b,i]-sum(theta%*%deta.dtheta[i-(ma+MA[b]*S),a])+deta.dTHETA[i-ma[a],b]-sum(THETA%*%deta.dTHETA[i-(ma[a]+MA*S),b])+sum(ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dthetaTHETA[a,b,i-ma_ind]))
-      #   }
-      # }
-      # for(b in 1:P1)
-      # {
-      #   for(a in 1:P1)
-      #   {
-      #     deta.dPHIPHI[a,b,i]<- 0 +  sum(ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dPHIPHI[a,b,i-ma_ind]))
-      #   }
-      # }
-      # for(b in 1:q1)
-      # {
-      #   for(a in 1:P1)
-      #   {
-      #     deta.dPHItheta[a,b,i]= deta.dPHI[i-ma[b],a] -sum(THETA%*%deta.dPHI[i-(ma[b]+MA*S),a])+sum(ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dPHItheta[a,b,i-ma_ind]))
-      #   }
-      # }
-      # for(b in 1:Q1)
-      # {
-      #   for(a in 1:P1)
-      #   {
-      #     deta.dPHITHETA[a,b,i]= deta.dPHI[i-MA[b]*S,a] -sum(theta%*%deta.dPHI[i-(ma+MA[b]*S),a])+sum(ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dPHITHETA[a,b,i-ma_ind]))
-      #   }
-      # }
-      # for(b in 1:Q1)
-      # {
-      #   for(a in 1:Q1)
-      #   {
-      #     deta.dTHETATHETA[a,b,i]= deta.dTHETA[i-MA[a]*S,b]-sum(theta%*%deta.dTHETA[i-(ma+MA[a]*S),b])+deta.dTHETA[i-MA[b]*S,a]-sum(theta%*%deta.dTHETA[i-(ma+MA[b]*S),a])+ sum(ma_par%*%(mu.eta(etahat2[i-ma_ind])*deta.dTHETATHETA[a,b,i-ma_ind]))
-      #   }
-      # }
     }
     
     mM0 <- matrix(deta.dbeta0[(m+1):n,],ncol=1,nrow=(n-m))
@@ -733,28 +565,8 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     PP <- matrix(deta.dPHI[(m+1):n,], ncol=P1,nrow=(n-m))
     qq <- matrix(deta.dtheta[(m+1):n,], ncol=q1,nrow=(n-m))
     QQ <- matrix(deta.dTHETA[(m+1):n,], ncol=Q1,nrow=(n-m))
-    # mM02<- matrix(deta.dbeta0beta0[(m+1):n,], ncol=1,nrow=(n-m))
-    # B0p<- matrix(deta.dbeta0phi[(m+1):n,], ncol=p1,nrow=(n-m))
-    # B0q=matrix(deta.dbeta0theta[(m+1):n,], ncol=q1,nrow=(n-m))
-    # B0P<- matrix(deta.dbeta0PHI[(m+1):n,], ncol=P1,nrow=(n-m))
-    # B0Q=matrix(deta.dbeta0THETA[(m+1):n,], ncol=Q1,nrow=(n-m))
-    # pp2<- array(deta.dphiphi[,,(m+1):n],dim=c(p1,p1,(n-m)))
-    # pq=array(deta.dphitheta[,,(m+1):n],dim=c(p1,q1,(n-m)))
-    # pP <- array(deta.dphiPHI[,,(m+1):n],dim=c(p1,P1,(n-m)))
-    # pQ=array(deta.dphiTHETA[,,(m+1):n],dim=c(p1,Q1,(n-m)))
-    # qq2=array(deta.dthetatheta[,,(m+1):n],dim=c(q1,q1,(n-m)))
-    # qQ=array(deta.dthetaTHETA[,,(m+1):n],dim=c(q1,Q1,(n-m)))
-    # PP2<- array(deta.dPHIPHI[,,(m+1):n],dim=c(P1,P1,(n-m)))
-    # Pq=array(deta.dPHItheta[,,(m+1):n],dim=c(P1,q1,(n-m)))
-    # PQ=array(deta.dPHITHETA[,,(m+1):n],dim=c(P1,Q1,(n-m)))
-    # QQ2=array(deta.dTHETATHETA[,,(m+1):n],dim=c(Q1,Q1,(n-m)))
     mM <- matrix(deta.dbeta[(m+1):n,], ncol=k,nrow=(n-m))
-    # B0B<-matrix(deta.dbeta0beta[(m+1):n,], ncol=k,nrow=(n-m))
-    # mM2<- array(deta.dbetabeta[,,(m+1):n],dim=c(k,k,(n-m)))
-    # Bp<- array(deta.dbetaphi[,,(m+1):n],dim=c(k,p1,(n-m)))
-    # Bq=array(deta.dbetatheta[,,(m+1):n],dim=c(k,q1,(n-m)))
-    # BP<- array(deta.dbetaPHI[,,(m+1):n],dim=c(k,P1,(n-m)))
-    # BQ=array(deta.dbetaTHETA[,,(m+1):n],dim=c(k,Q1,(n-m)))
+    
     ####START SECOND DERIVATIVE FROM LOG LIKELIHOOD IN RESPECT TO lambda
     ###########################################################################################################
     Ulambdalambda=c()
@@ -788,7 +600,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     KB0P <- -(t(mM0)%*%mV2%*%(mT2^2)%*%PP)
     KB0Q <- -(t(mM0)%*%mV2%*%(mT2^2)%*%QQ)
     KB0lambda0 <- -t(mM0)%*% mulambda %*% (mT1^2) %*% vI 
-   # KB0lambda1 <- -t(mM0)%*% mulambda %*% (mT1^2) %*% L
+    # KB0lambda1 <- -t(mM0)%*% mulambda %*% (mT1^2) %*% L
     
     KBB0<-t(KB0B)
     KBB=matrix(rep(NA,k*k),ncol=k)
@@ -844,7 +656,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
       }  
     }
     KBlambda0 <- -t(mM)%*% mulambda %*% (mT1^2) %*% vI 
-  #  KBlambda1 <- -t(mM)%*% mulambda %*% (mT1^2) %*% L
+    #  KBlambda1 <- -t(mM)%*% mulambda %*% (mT1^2) %*% L
     
     KpB0 <- t(KB0p)
     KpB <- t(KBp)
@@ -891,7 +703,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
       }
     }
     Kplambda0 <- -t(pp) %*% mulambda %*% (mT1^2) %*% vI   
-  #  Kplambda1 <- -t(pp)%*% mulambda %*% (mT1^2) %*% L
+    #  Kplambda1 <- -t(pp)%*% mulambda %*% (mT1^2) %*% L
     
     KqB0 <- t(KB0q)
     KqB <- t(KBq)
@@ -916,7 +728,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
         }
       }}
     Kqlambda0 <- -t(qq)%*% mulambda %*% (mT1^2) %*% vI
-  #  Kqlambda1 <- -t(qq)%*% mulambda %*% (mT1^2) %*% L
+    #  Kqlambda1 <- -t(qq)%*% mulambda %*% (mT1^2) %*% L
     
     KPB0 <- t(KB0P)
     KPB <- t(KBP)
@@ -953,7 +765,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
       }}
     #print("KPQ");print(KPQ)
     KPlambda0 <- -t(PP)%*% mulambda %*% (mT1^2) %*% vI
-   # KPlambda1 <- -t(PP)%*% mulambda %*% (mT1^2) %*% L
+    # KPlambda1 <- -t(PP)%*% mulambda %*% (mT1^2) %*% L
     
     KQB0 <- t(KB0Q)
     KQB <- t(KBQ)
@@ -970,7 +782,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
         }}
     }
     KQlambda0 <- -t(QQ)%*% mulambda %*% (mT1^2) %*% vI
-  #  KQlambda1 <- -t(QQ)%*% mulambda %*% (mT1^2) %*% L
+    #  KQlambda1 <- -t(QQ)%*% mulambda %*% (mT1^2) %*% L
     
     Klambda0B0 <- t(KB0lambda0)
     Klambda0B <- t(KBlambda0)
@@ -978,7 +790,7 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     Klambda0q <- t(Kqlambda0)
     Klambda0P <- t(KPlambda0)
     Klambda0Q <- t(KQlambda0)
-  #  Klambda0lambda1 <- -t(B0)%*% mV1 %*% (mT1^2) %*% L
+    #  Klambda0lambda1 <- -t(B0)%*% mV1 %*% (mT1^2) %*% L
     Klambda0lambda0 <- -t(B0) %*%  mV1 %*%(mT1^2) %*% vI
     
     # Klambda1B0 <- t(KB0lambda1)
@@ -992,20 +804,20 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     
     K <- rbind(
       cbind(KB0B0,KB0B,KB0p,KB0q,KB0P,KB0Q,KB0lambda0#,KB0lambda1
-            ),
+      ),
       cbind(KBB0,KBB,KBp,KBq,KBP,KBQ,KBlambda0#,KBlambda1
-            ),
+      ),
       cbind(KpB0,KpB,Kpp,Kpq,KpP,KpQ,Kplambda0#,Kplambda1
-            ),
+      ),
       cbind(KqB0,KqB,Kqp,Kqq,KqP,KqQ,Kqlambda0#,Kqlambda1
-            ),
+      ),
       cbind(KPB0,KPB,KPp,KPq,KPP,KPQ,KPlambda0#,KPlambda1
-            ),
+      ),
       cbind(KQB0,KQB,KQp,KQq,KQP,KQQ,KQlambda0#,KQlambda1
-            ),
+      ),
       cbind(Klambda0B0,Klambda0B,Klambda0p,Klambda0q,Klambda0P,Klambda0Q,Klambda0lambda0#,Klambda0lambda1
-            )#,
-     # cbind(Klambda1B0,Klambda1B,Klambda1p,Klambda1q,Klambda1P,Klambda1Q,Klambda1lambda0,Klambda1lambda1)
+      )#,
+      # cbind(Klambda1B0,Klambda1B,Klambda1p,Klambda1q,Klambda1P,Klambda1Q,Klambda1lambda0,Klambda1lambda1)
     )
     return(K)
   }
@@ -1030,9 +842,9 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     }
   }
   
- # print("z$coeff");print(z$coeff);print("sqrt(v)");print(sqrt(v))
+  # print("z$coeff");print(z$coeff);print("sqrt(v)");print(sqrt(v))
   z$zstat<-z$coeff/sqrt(v)
- # print("z$zstat");print(z$zstat)
+  # print("z$zstat");print(z$zstat)
   #print("Estatísticas Z do Teste de Wald")
   #print(z$zstat)
   #print("Resultado a nível 5%")
@@ -1052,11 +864,11 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   z$pvalues<-(1-pnorm(abs(z$zstat)))*2
   
   first_col<-c("intercept",1:k,ar, ma, AR, MA, "lambda0 estimator"#, "lambda1 estimator"
-               )
+  )
   result <- matrix(c(first_col,round(c(z$coeff,z$zstat,LI,LS,z$pvalues),8),resp), nrow=length(opt$par), ncol=7, byrow=F)
   colnames(result) <- c("Estimator","MLE","Wald's Statistic","Lower bound","Upper bound","p-value","Wald'S Test result")
   rownames(result)<-c("",rep("cov",k), rep("ar",length(ar)), rep("ma",length(ma)), rep("AR",length(AR)), rep("MA",length(MA)),""#,""
-                      )
+  )
   
   #print(result,quot=F)
   z$coef.result<-result
@@ -1072,47 +884,6 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   z$serie <- y
   
   ########################################################################
-  ######################   residuals   ######################
-  ########################################################################
-  
-  z$resid0 <- y[(m+1):n]-z$fitted[(m+1):n]
-  
-  ########################################################################
-  ######################   standardized residuals   ######################
-  ########################################################################
-  
-  z$resid1 <- (z$resid)/sqrt((1-lambdahat)*(z$fitted[(m+1):n]^2)*(4/pi-1+lambdahat))
-  
-  ########################################################################
-  ########################   deviance residuals   ########################
-  ########################################################################
-  l_tilde <- (ir.pdf(y[(m+1):n], lambdahat, y[(m+1):n], log = TRUE))#y[(m+1):n] where was mu
-  l_hat <- (ir.pdf(y[(m+1):n], lambdahat, z$fitted[(m+1):n], log = TRUE))#z$fitted[(m+1):n] where was mu
-  for (i in 1:(n-m)){
-    if(is.infinite(l_tilde[i])){l_tilde[i]=0}#log(.Machine$double.eps)
-    if(is.infinite(l_hat[i])){l_hat[i]=0}#log(.Machine$double.eps)
-  }
-  
-  dt <- (l_tilde-l_hat)
-  dt[which(dt<0)]<-0
-  
-  r2a<-sign(y[(m+1):n]-z$fitted[(m+1):n])
-  r2b<-sqrt(2*(dt))
-  z$resid2<-r2a*r2b#deviance residuals
-  
-  
-  z$deviance <- 2*sum(dt)
-  z$dof.dev=(n-m-length(opt$par)+2+k)#desconsidera intercepto do eta e lambda da distribuição
-  z$p_deviance <- 1 - pchisq(z$deviance, z$dof.dev)
-  z$deviance.star <- 2*sum(dt)*n/(n-m)
-  
-  ########################################################################
-  ########################   quantile residuals   ########################
-  ########################################################################
-  
-  z$resid3 <- as.vector(qnorm(ir.cdf(y[(m+1):n],lambdahat, muhat,log.p = FALSE ) ))
-  
-  ########################################################################
   ######## randomized quantile residuals with uniform distribution  ######
   ########################################################################
   
@@ -1122,28 +893,8 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     if(y[i]==0) ui[i] <- runif(1,0,lambdahat[i-m])
     if(y[i]!=0) ui[i] <- ir.cdf(y[i],lambdahat[i-m], muhat[i-m],log.p = FALSE)
   }
-  z$resid4 <- qnorm(ui[(m+1):n])
+  z$residual<- qnorm(ui[(m+1):n])
   
-  ########################################################################
-  
-  if(resid==0) {
-    residual=z$resid0
-  }
-  if(resid==1) {
-    residual=z$resid1
-  }
-  
-  if(resid==2) {
-    residual=z$resid2
-  }
-  if(resid==3) {
-    residual=z$resid3
-  }
-  if(resid==4) {
-    residual=z$resid4
-  }
-  
-  z$residual<-residual
   
   measures.fitted=function(yfit,residual){
     ams=c()
@@ -1253,9 +1004,12 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     return(ams)
   }
   
-  z$accuracyfitted= measures.fitted(z$fitted,residual)$accuracy
-  z$residualfitted=measures.fitted(z$fitted,residual)$residual
-  z$diagnosticfitted=measures.fitted(z$fitted,residual)$diagnostic
+  z$accuracyfitted_imedian= measures.fitted(z$fitted_imedian,z$residual)$accuracy
+  z$accuracyfitted_imean= measures.fitted(z$fitted_imean,z$residual)$accuracy
+  z$accuracyfitted_mu= measures.fitted(z$fitted_mu,z$residual)$accuracy
+  z$residualfitted=measures.fitted(z$fitted_imedian,z$residual)$residual
+  z$diagnosticfitted=measures.fitted(z$fitted_imedian,z$residual)$diagnostic
+  
   if(is.na(z$diagnosticfitted[2,ncol(z$diagnosticfitted)])){z$RMC=1}
   mresult<-matrix(round(c(z$loglik,z$maic,z$mbic),4),nrow=3,ncol=1)
   rownames(mresult)<-c("Log-likelihood","AIC","BIC")
@@ -1263,41 +1017,63 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   z$mresult<-mresult
   
   ########################################################################
-  ########################  out of sample forecast  ######################
+  #########################  traditional forecast  #######################
   ########################################################################
+  
   if(steps!=0){
     eta1_prev <- c(ynew,rep(NA,steps))
-    eta2_prev <- c(ynew,rep(NA,steps))
-    y_prev <- c(ynew,rep(NA,steps))
+    eta2_prev_imean<-eta2_prev_mu<-eta2_prev_imedian <- c(ynew,rep(NA,steps))
+    y_prev_mu<-y_prev_imean<-y_prev_imedian <- c(ynew,rep(NA,steps))
+    muf_imedian<-muf_imean<-muf_mu<-NA
     ntotal<-n+steps
     X_prev <- matrix(c(rep(1,ntotal),exvar), nrow=ntotal, ncol=(k+1),byrow = F)
-    lambdaf<-muf<-NA
+    lambdaf<-NA
     
     for(i in 1:steps) 
     {
-      eta1_prev[n+i] <- X_prev[n+i,1]%*%as.matrix(z$lambda0) #+ sum(z$lambda1*(y_prev[n+i-1]))
+      eta1_prev[n+i] <- X_prev[n+i,1]%*%as.matrix(z$lambda0) #+ sum(z$lambda1*(y_prev_imedian[n+i-1]))
       lambdaf[i] <-exp(eta1_prev[n+i])/(exp(eta1_prev[n+i])+1)
-      eta2_prev[n+i] <- X_prev[n+i,1]%*%as.matrix(z$beta0)+ X_prev[n+i,2:ncol(X_prev)]%*%as.matrix(z$beta) + sum(ar_par*(y_prev[n+i-ar_ind]) ) - sum(ma_par*errorhat[n+i-ma_ind])
-      muf[i]<-linkinv(eta2_prev[n+i]) 
-      y_prev[n+i] <-ir.q(rep(0.5,1),lambda=lambdaf[i],mu=muf[i])
+      eta2_prev_imedian[n+i] <- X_prev[n+i,1]%*%as.matrix(z$beta0)+ X_prev[n+i,2:ncol(X_prev)]%*%as.matrix(z$beta) + sum(ar_par*(y_prev_imedian[n+i-ar_ind]) ) - sum(ma_par*errorhat[n+i-ma_ind])
+      muf_imedian[i]<-linkinv(eta2_prev_imedian[n+i]) 
+      y_prev_imedian[n+i] <-ir.q(rep(0.5,1),lambda=lambdaf[i],mu=muf_imedian[i])
+      
+      eta2_prev_imean[n+i] <- X_prev[n+i,1]%*%as.matrix(z$beta0)+ X_prev[n+i,2:ncol(X_prev)]%*%as.matrix(z$beta) + sum(ar_par*(y_prev_imean[n+i-ar_ind]) ) - sum(ma_par*errorhat[n+i-ma_ind])
+      muf_imean[i]<-linkinv(eta2_prev_imean[n+i]) 
+      y_prev_imean[n+i]<-(1-lambdaf[i])*muf_imean[i]
+      
+      eta2_prev_mu[n+i] <- X_prev[n+i,1]%*%as.matrix(z$beta0)+ X_prev[n+i,2:ncol(X_prev)]%*%as.matrix(z$beta) + sum(ar_par*(y_prev_mu[n+i-ar_ind]) ) - sum(ma_par*errorhat[n+i-ma_ind])
+      muf_mu[i]<-linkinv(eta2_prev_mu[n+i])
+      y_prev_mu[n+i]<-muf_mu[i]
+      
       errorhat[n+i] <- 0 # residuals on the original scale y-mu 
     }
-    z$forecast<-ts(c(rep(NA,n),y_prev[(n+1):(n+steps)]),start=start(y),frequency=frequency(y)) 
+    z$forecast_imedian<-ts(c(rep(NA,n),y_prev_imedian[(n+1):(n+steps)]),start=start(y),frequency=frequency(y))   
+    z$forecast_mu<-ts(c(rep(NA,n),y_prev_mu[(n+1):(n+steps)]),start=start(y),frequency=frequency(y))  
+    z$forecast_imean<-ts(c(rep(NA,n),y_prev_imean[(n+1):(n+steps)]),start=start(y),frequency=frequency(y))
     
-    #### rolling window forecast
+    ########################################################################
+    ######################## rolling window forecast  ######################
+    ########################################################################
     
-    yr_prev <- c(z$fitted,rep(NA,steps))
+    yr_prev_imean <-c(z$fitted_imean,rep(NA,steps))
+    yr_prev_mu <- c(z$fitted_mu,rep(NA,steps))
+    yr_prev_imedian <- c(z$fitted_imedian,rep(NA,steps))
     eta2_rw <- c(ynew,rep(NA,steps))
     murwf<-NA
     for(i in 1:steps)
     {
       eta2_rw[n+i] <- X_prev[n+i,1]*z$beta0 + X_prev[n+i,2:ncol(X_prev)]%*%as.matrix(z$beta)+ sum(ar_par*(y[n+i-ar_ind]) ) - sum(ma_par*errorhat[n+i-ma_ind])
       murwf[i] <- linkinv(eta2_rw[n+i])
-      yr_prev[n+i] <-ir.q(rep(0.5,1),lambda=lambdaf[i],mu=murwf[i])
+      
+      yr_prev_imedian[n+i] <-ir.q(rep(0.5,1),lambda=lambdaf[i],mu=murwf[i])
+      yr_prev_mu[n+i] <-murwf[i]
+      yr_prev_imean[n+i] <-(1-lambdaf[i])*murwf[i]
+      
     }
-    z$rollingforecast<-ts(c(rep(NA,n),yr_prev[(n+1):(n+steps)]),start=start(y),frequency=frequency(y))     
-    
-    }
+    z$rollingforecast_imedian<-ts(c(rep(NA,n),yr_prev_imedian[(n+1):(n+steps)]),start=start(y),frequency=frequency(y))
+    z$rollingforecast_imean<-ts(c(rep(NA,n),yr_prev_imean[(n+1):(n+steps)]),start=start(y),frequency=frequency(y))
+    z$rollingforecast_mu<-ts(c(rep(NA,n),yr_prev_mu[(n+1):(n+steps)]),start=start(y),frequency=frequency(y))
+  }
   ########################################################################
   ########################   forecast analysis   #########################
   ########################################################################
@@ -1349,17 +1125,26 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
   
   if(steps!=0){
     if(validation==T){
-      accuracytraditionalforecast<-accuracyrollingwindow<-matrix(rep(NA,5*steps),nrow=steps, ncol=5, byrow=T)
-      colnames(accuracytraditionalforecast) <- colnames(accuracyrollingwindow) <- c("MAE","RMSE","MdRAE","MASE","MDA")
-      rownames(accuracytraditionalforecast) <- rownames(accuracyrollingwindow) <- 1:steps
+      accuracytraditionalforecast_imean<-accuracytraditionalforecast_mu<-accuracytraditionalforecast_imedian<-accuracyrollingwindow_mu<-accuracyrollingwindow_imean<-accuracyrollingwindow_imedian<-matrix(rep(NA,5*steps),nrow=steps, ncol=5, byrow=T)
+      colnames(accuracytraditionalforecast_imedian) <-colnames(accuracytraditionalforecast_mu) <-colnames(accuracytraditionalforecast_imean) <- colnames(accuracyrollingwindow_mu) <-colnames(accuracyrollingwindow_imean) <-colnames(accuracyrollingwindow_imedian) <- c("MAE","RMSE","MdRAE","MASE","MDA")
+      rownames(accuracytraditionalforecast_imedian) <-rownames(accuracytraditionalforecast_mu) <-rownames(accuracytraditionalforecast_imean) <- rownames(accuracyrollingwindow_mu) <-rownames(accuracyrollingwindow_imean) <-rownames(accuracyrollingwindow_imedian) <- 1:steps
       for (i in 1:steps){
-        accuracytraditionalforecast[i,]<-measures.forecast(y_prev,steps=i)
-        accuracyrollingwindow[i,]<-measures.forecast(yr_prev,steps=i)
+        accuracytraditionalforecast_imedian[i,]<-measures.forecast(y_prev_imedian,steps=i)
+        accuracytraditionalforecast_imean[i,]<-measures.forecast(y_prev_imean,steps=i)
+        accuracytraditionalforecast_mu[i,]<-measures.forecast(y_prev_mu,steps=i)
+        accuracyrollingwindow_imedian[i,]<-measures.forecast(yr_prev_imedian,steps=i)
+        accuracyrollingwindow_imean[i,]<-measures.forecast(yr_prev_imean,steps=i)
+        accuracyrollingwindow_mu[i,]<-measures.forecast(yr_prev_mu,steps=i)
       }
-      z$accuracyforecast<-accuracytraditionalforecast
-      z$accuracyrollingwindow<-accuracyrollingwindow
+      z$accuracyforecast_imedian<-accuracytraditionalforecast_imedian
+      z$accuracyforecast_imean<-accuracytraditionalforecast_imean
+      z$accuracyforecast_mu<-accuracytraditionalforecast_mu
+      z$accuracyrollingwindow_imedian<-accuracyrollingwindow_imedian
+      z$accuracyrollingwindow_imean<-accuracyrollingwindow_imean
+      z$accuracyrollingwindow_mu<-accuracyrollingwindow_mu
     }
   }
+  
   
   ###################################################
   ######### GRAPHICS ################################
@@ -1368,13 +1153,12 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     t<-seq(-5,n+6,by=1)
     w1<-5
     h1<-4
-    #postscript(file = "resid_v_ind.pdf",horizontal=F,paper="special",width = w1, height = h1,family = "Times")
     pdf("resid_v_ind.pdf",width=5, height=4)
     {
       par(mfrow=c(1,1))
       par(mar=c(2.8, 2.7, 1, 1))
       par(mgp=c(1.7, 0.45, 0))
-      plot(residual,main=" ",xlab="Index",ylab="Residuals", pch = "+",ylim=c(-4,4))
+      plot(z$residual,main=" ",xlab="Index",ylab="Residuals", pch = "+",ylim=c(-4,4))
       lines(t,rep(-3,n+12)#length(residual))
             ,lty=2,col=1)
       lines(t,rep(3,n+12)#length(residual))
@@ -1386,13 +1170,12 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     }
     dev.off()
     
-    #postscript(file = "resid_v_fitted.eps",horizontal=F,paper="special",width = w1, height = h1,family = "Times")
-    pdf("resid_v_fitted.pdf",width=5, height=4)
+    pdf("resid_v_fitted_imedian.pdf",width=5, height=4)
     {
       par(mfrow=c(1,1))
       par(mar=c(2.8, 2.7, 1, 1)) 
       par(mgp=c(1.7, 0.45, 0))
-      plot(as.vector(z$fitted[(m+1):n]),as.vector(residual), main=" ", pch = "+",
+      plot(as.vector(z$fitted_imedian[(m+1):n]),as.vector(z$residual), main=" ", pch = "+",
            xlab="Fitted values",ylab="Residuals",ylim=c(-4,4))
       lines(t,rep(-3,n+12),lty=2,col=1)
       lines(t,rep(3,n+12),lty=2,col=1)
@@ -1401,14 +1184,12 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     }
     dev.off()
     
-    
-    #postscript(file = "obs_v_fit.eps",horizontal=F,paper="special",width = w1, height = h1,family = "Times")
-    pdf("obs_v_fit.pdf",width=5, height=4)### abre no navegador google chrome só
+    pdf("obs_v_fit_imedian.pdf",width=5, height=4)
     {
       par(mfrow=c(1,1))
       par(mar=c(2.8, 2.7, 1, 1)) 
       par(mgp=c(1.7, 0.45, 0))
-      plot(as.vector(z$fitted), as.vector(ytofit), main=" ", pch = "+",
+      plot(as.vector(z$fitted_imedian), as.vector(ytofit), main=" ", pch = "+",
            xlab="Fitted values",ylab="Observed data",
            xlim=c(0.95*min(y),max(y)*1.05),
            ylim=c(0.95*min(y),max(y)*1.05))
@@ -1416,13 +1197,12 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     }
     dev.off()
     
-    #postscript(file = "resid_density.eps",horizontal=F,paper="special",width = w1, height = h1,family = "Times")
     pdf("resid_density.pdf",width=5, height=4)
     {
       par(mfrow=c(1,1))
       par(mar=c(1.5, 2.7, 1, 1)) 
       par(mgp=c(1.7, 0.45, 0))
-      densidade<-density(residual)
+      densidade<-density(z$residual)
       plot(densidade,ylab="Density",main=" ",xlab=" ",ylim=c(0,1.15*max(densidade$y)))
       lines(densidade$x,dnorm(densidade$x),lty=2)
       legend("topleft",c("Exact distribution of residuals","Normal approximation"),#pch=vpch,
@@ -1430,125 +1210,122 @@ EMV.irarma <- function(y,ar=c(0.0),ma=c(0.0),AR=c(0.0),MA=c(0.0),S=12,exvar=matr
     }
     dev.off()
     
-    #postscript(file = "resid_FAC.eps",horizontal=F,paper="special",width = w1, height = h1,family = "Times")
     pdf("resid_FAC.pdf",width=5, height=4)
     {
       par(mfrow=c(1,1))
       par(mar=c(2.8, 2.7, 1, 1)) 
       par(mgp=c(1.7, 0.45, 0))
-      acf(residual,ylab="ACF",xlab="Lag") 
+      acf(z$residual,ylab="ACF",xlab="Lag") 
     }
     dev.off()
     
-    #postscript(file = "resid_FACP.eps",horizontal=F,paper="special",width = w1, height = h1,family = "Times")
     pdf("resid_FACP.pdf",width=5, height=4)
     {
       par(mfrow=c(1,1))
       par(mar=c(2.8, 2.7, 1, 1)) 
       par(mgp=c(1.7, 0.45, 0))
-      pacf(residual,ylab="PACF",xlab="Lag")
+      pacf(z$residual,ylab="PACF",xlab="Lag")
     }
     dev.off()
     
-    #postscript(file = "qq_plot.eps",horizontal=F,paper="special",width = w1, height = h1,family = "Times")
     pdf("qq_plot.pdf",width=5, height=4)
     {  
       par(mfrow=c(1,1))
       par(mar=c(2.8, 2.7, 1, 1)) 
       par(mgp=c(1.7, 0.45, 0))
-      qqnorm(residual, pch = "+",
-             xlim=c(0.95*min(residual),max(residual)*1.05),
-             ylim=c(0.95*min(residual),max(residual)*1.05),
+      qqnorm(z$residual, pch = "+",
+             xlim=c(0.95*min(z$residual),max(z$residual)*1.05),
+             ylim=c(0.95*min(z$residual),max(z$residual)*1.05),
              main="",xlab="Normal quantiles",ylab="Empirical quantiles")
       lines(c(-10,10),c(-10,10),lty=2)
     }
     dev.off()
     
-    #postscript(file = "adjusted.eps",horizontal=F,paper="special",width = w1, height = h1,family = "Times")
-    pdf("adjusted.pdf",width=5, height=4)
+    pdf("adjusted_imedian.pdf",width=5, height=4)
     {
       par(mfrow=c(1,1))
       par(mar=c(2.8, 2.7, 1, 1)) # margens c(baixo,esq,cima,direia)
       par(mgp=c(1.7, 0.45, 0))
       plot(ytofit,type="l",ylab="Serie",xlab="Time")
-      lines(z$fitted,col="blue",lty=2)
+      lines(z$fitted_imedian,col="blue",lty=2)
       legend("bottomleft",c("Observed data","Fitted values"),#pch=vpch,
              pt.bg="white", lty=c(1,2), bty="n",col=c(1,"blue"))
     }
     dev.off()
+    
     if(steps!=0){
-      #postscript(file = "forecast.eps",horizontal=F,paper="special",width = 6, height = 4.7,family = "Times")
-      if(steps!=0){
-        pdf("fittedforecast.pdf",width=5, height=4)
-        {
-          fim<-end(y)[1]+end(y)[2]/12
-          par(mfrow=c(1,1))
-          par(mar=c(2.8, 2.7, 1, 1)) # margens c(baixo,esq,cima,direia)
-          par(mgp=c(1.7, 0.45, 0))
-          plot(c(z$fitted,y_prev[(n+1):(n+steps)]),type="l",col="blue",lty=2, ylim=c(min(y),max(y)),ylab="Serie",xlab="Time")
-          abline(v=fim,lty=2)
-          abline(v=n,lty=2)
-          lines(as.vector(y))
-          legend("bottomleft",c("Observed data","Fitted and forecast values"),#pch=vpch,
-                 pt.bg="white", lty=c(1,2), bty="n",col=c(1,"blue"))
-        }
-        dev.off()
-        
-        pdf("forecast.pdf",width=5, height=4)
-        {
-          fim<-end(y)[1]+end(y)[2]/12
-          par(mfrow=c(1,1))
-          par(mar=c(2.8, 2.7, 1, 1)) # margens c(baixo,esq,cima,direia)
-          par(mgp=c(1.7, 0.45, 0))
-          plot(y_prev[(n+1):(n+steps)],type="l",col="blue",lty=2, ylim=c(min(y),max(y)),ylab="Serie",xlab="Time")
-          abline(v=fim,lty=2)
-          abline(v=n,lty=2)
-          lines(as.vector(y[(n+1):(n+steps)]))
-          legend("bottomleft",c("Observed data","Forecast values"),#pch=vpch,
-                 pt.bg="white", lty=c(1,2), bty="n",col=c(1,"blue"))
-        }
-        dev.off()
+      pdf("fittedforecast_imedian.pdf",width=5, height=4)
+      {
+        fim<-end(y)[1]+end(y)[2]/12
+        par(mfrow=c(1,1))
+        par(mar=c(2.8, 2.7, 1, 1)) # margens c(baixo,esq,cima,direia)
+        par(mgp=c(1.7, 0.45, 0))
+        plot(c(z$fitted_imedian,y_prev_imedian[(n+1):(n+steps)]),type="l",col="blue",lty=2, ylim=c(min(y),max(y)),ylab="Serie",xlab="Time")
+        abline(v=fim,lty=2)
+        abline(v=n,lty=2)
+        lines(as.vector(y))
+        legend("bottomleft",c("Observed data","Fitted and forecast values"),#pch=vpch,
+               pt.bg="white", lty=c(1,2), bty="n",col=c(1,"blue"))
       }
+      dev.off()
+      
+      pdf("forecast_imedian.pdf",width=5, height=4)
+      {
+        fim<-end(y)[1]+end(y)[2]/12
+        par(mfrow=c(1,1))
+        par(mar=c(2.8, 2.7, 1, 1)) # margens c(baixo,esq,cima,direia)
+        par(mgp=c(1.7, 0.45, 0))
+        plot(y_prev_imedian[(n+1):(n+steps)],type="l",col="blue",lty=2, ylim=c(min(y),max(y)),ylab="Serie",xlab="Time")
+        abline(v=fim,lty=2)
+        abline(v=n,lty=2)
+        lines(as.vector(y[(n+1):(n+steps)]))
+        legend("bottomleft",c("Observed data","Forecast values"),#pch=vpch,
+               pt.bg="white", lty=c(1,2), bty="n",col=c(1,"blue"))
+      }
+      dev.off()
     }
+    
   }#END GRAPHICS
   
   if(print==T){
-    print("iRSARMA",quote=F)
+    print("iRSARMAX",quote=F)
     print(z$coef.result,quote=F)
     message("")
     print(c("Log-likelihood =",round(z$loglik,4)),quote=F)
-    print(c("MAIC =",round(z$maic,4),"MBIC =",round(z$mbic,4)),quote=F)
-    print(c("Deviance =",round(z$deviance,4)," DF:",z$dof.dev,"Deviance* =",round(z$deviance.star,4)),quote=F)
+    print(c("MAIC =",round(z$maic,4),"MBIC =",round(z$mbic,4)),quote=F)   
     message("")  
-    if(resid==0) {
-      print("Residuals:",quote=F)
-    }
-    if(resid==1) {
-      print("Standardized residuals:",quote=F)
-    }
-    
-    if(resid==2) {
-      print("Deviance residuals:",quote=F)
-    }
-    if(resid==3) {
-      print("Quantile residuals:",quote=F)
-    }
-    if(resid==4) {
-      print("Randomized quantile residuals with uniform distribution:",quote=F)
-    }
+    print("Randomized quantile residuals with uniform distribution:",quote=F)
     print(summary(z$residual))
     message("")
     print(z$diagnosticfitted)
     message("")
-    print("Fitted accuracy",quote=F)
-    print(z$accuracyfitted)
+    print("Fitted iR median accuracy",quote=F)
+    print(z$accuracyfitted_imedian)
+    message("")
+    print("Fitted iR mean accuracy",quote=F)
+    print(z$accuracyfitted_imean)
+    message("")
+    print("Fitted mu submodel accuracy",quote=F)
+    print(z$accuracyfitted_mu)
     message("")
     if(steps!=0 & validation==T){
-      print("Traditional forecast accuracy:",quote=F)
-      print(z$accuracyforecast)
+      print("Traditional forecast iR median accuracy:",quote=F)
+      print(z$accuracyforecast_imedian)
       message("")
-      print("Rolling window forecast accuracy:",quote=F)
-      print(z$accuracyrollingwindow)
+      print("Rolling window forecast iR median accuracy:",quote=F)
+      print(z$accuracyrollingwindow_imedian)
+      message("")
+      print("Traditional forecast iR mean accuracy:",quote=F)
+      print(z$accuracyforecast_imean)
+      message("")
+      print("Rolling window forecast iR mean accuracy:",quote=F)
+      print(z$accuracyrollingwindow_imean)
+      message("")
+      print("Traditional forecast mu submodel accuracy:",quote=F)
+      print(z$accuracyforecast_mu)
+      message("")
+      print("Rolling window forecast mu submodel accuracy:",quote=F)
+      print(z$accuracyrollingwindow_mu)
     }
   }
   
