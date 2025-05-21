@@ -4,6 +4,8 @@ This repository contains an R implementation of:
 > the sample generator from inflated Rayleigh autoregressive moving average model called sample.irarma function, and
 > the selection model algorithm to iRSARMAX model, called auto.irarma function.
 For an application example, please open the file "example.R".
+>
+Cite: https://doi.org/10.1109/ACCESS.2024.3515647
 
 If you have any problem, please contact Aline Armanini Stefanan (aline.armanini@acad.ufsm.br; aline4876@gmail.com).
 
